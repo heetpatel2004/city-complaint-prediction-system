@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart City Complaint System</title>
+    
+    <link rel="stylesheet" href="{% static 'userform/landing.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'userform/images/favicon.png' %}">
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+{% comment %} <header>
+    <div class="logo">
+        <img src="{% static 'userform/images/building_2.png' %}" alt="Logo">
+        <div class="logo-text">
+        <h3>Smart City</h3>
+        <p>Complaint System</p>
+        </div>
+    </div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+         {% if user.is_authenticated %}
+        <span class="text" style="color: #1f6fd8; font-weight: 500; padding:0 5px 0 15px;">
+            Welcome, <b>{{ user.username }}!</b>        </span>
+        <a href="{% url 'userform:logout' %}" class="btn">Logout</a>
+    {% else %}
+        <a href="{% url 'userform:login' %}" class="btn">Login</a>
+        <a href="{% url 'userform:signup' %}" class="btn" id="signup-btn">Sign Up</a>
+    {% endif %}
+        {% comment %} <a href="{% url 'userform:login' %}" class="btn">Login</a>
+        <a href="{% url 'userform:signup' %}" class="btn" id="signup-btn">Sign Up</a> {% endcomment %}
+    {% comment %} </nav>
+</header> {% endcomment %}
+{% include 'userform/navbar.html' %}
+
+<!-- ================= HERO SECTION ================= -->
+<section class="hero">
+         <h1>Report City Issues. We Resolve Faster.</h1>
+         <p>Help us make our city smarter and cleaner.</p>
+
+         <div class="hero-buttons">
+            <a href="{% url "userform:submit_complaint" %}"><button class="orange">Register  Complaint  </button></a>
+            <a href="{% url "userform:track_complaint" %}"><button class="green">Track Complaint  </button></a>
+         </div>
+         <!-- <img src="/images/only_city.png" alt=""> -->
+    </section>
+
+<!-- ================= SERVICES SECTION ================= -->
+<section class="services">
+
+    <h2>Common Complaints</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <img src="{% static 'userform/images/garbage.png' %}" alt="Garbage Issue">
+            <h3>Garbage</h3>
+            <!-- <p>Report uncollected garbage in your area.</p> -->
+        </div>
+
+        <div class="card">
+            <img src="{% static 'userform/images/water_supply.png' %}" alt="Water Issue">
+            <h3>Water Supply</h3>
+            <!-- <p>Report water pipe leakage problems.</p> -->
+        </div>
+
+        <div class="card">
+            <img src="{% static 'userform/images/road_issues.png' %}" alt="Road Damage">
+            <h3>Road Issue</h3>
+            <!-- <p>Inform us about potholes and road cracks.</p> -->
+        </div>
+
+        <div class="card">
+            <img src="{% static 'userform/images/street_lights.png' %}" alt="Streetlight Issue">
+            <h3>Street Lights</h3>
+            <!-- <p>Report non-working street lights.</p> -->
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= WORK FLOW SECTION ================= -->
+<section class="workflow">
+    <div class="container">
+        <h3 class="section-title">How It Works</h3>
+
+        <div class="workflow-steps">
+
+            <div class="step">
+                <img src="{% static 'userform/images/submit_complaint.png' %}" alt="Submit Complaint">
+                <h3>1. Submit Complaint</h3>
+                <p>Describe the issue & submit.</p>
+            </div>
+
+            <div class="arrow">›</div>
+
+            <div class="step">
+                <img src="{% static 'userform/images/priority_analysis_2.png' %}" alt="Priority Analysis">
+                <h3>2. Priority Analysis</h3>
+                <p>System analyzes & prioritizes.</p>
+            </div>
+
+            <div class="arrow">›</div>
+
+            <div class="step">
+                <img src="{% static 'userform/images/quick_resolution_3.png' %}" alt="Quick Resolution">
+                <h3>3. Quick Resolution</h3>
+                <p>Issue resolved promptly.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+{% include "userform/footer.html" %}
+{% comment %} <footer>
+    <p>© 2026 Smart City Complaint System | All Rights Reserved</p>
+</footer>{% endcomment %}
+{% comment %} {% load django_browser_reload %}
+   {% django_browser_reload_script %} {% endcomment %}
+{% comment %} </body>
+</html>  {% endcomment %}

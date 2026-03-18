@@ -1,0 +1,29 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'userform/navbar.css' %}">
+</head>
+<header>
+    <div class="logo">
+        <img src="{% static 'userform/images/building_2.png' %}" alt="Logo">
+        <div class="logo-text">
+        <h3>Smart City</h3>
+        <p>Complaint System</p>
+        </div>
+    </div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="{% url 'userform:about_us' %}">About</a>
+        <a href="#">Contact</a>
+         {% if user.is_authenticated %}
+        <span class="text" style="color: #1f6fd8; font-weight: 500; padding:0 5px 0 15px;">
+            Welcome, <b>{{ user.username }}!</b>        </span>
+        <a href="{% url 'userform:logout' %}" class="btn">Logout</a>
+    {% else %}
+        <a href="{% url 'userform:login' %}" class="btn">Login</a>
+        <a href="{% url 'userform:signup' %}" class="btn" id="signup-btn">Sign Up</a>
+    {% endif %}
+        {% comment %} <a href="{% url 'userform:login' %}" class="btn">Login</a>
+        <a href="{% url 'userform:signup' %}" class="btn" id="signup-btn">Sign Up</a> {% endcomment %}
+    </nav>
+</header>

@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart City Complaint System</title>
+<link rel="stylesheet" href="{% static 'userform/track_complaint.css' %}">
+</head>
+<body>
+
+<div class="wrapper">
+
+    <!-- Header -->
+    <div class="top-bar">
+        <div class="logo-section">
+            <img src="{% static 'userform/images/building_2.png' %}" alt="logo">
+            <div>
+                <h2>Smart City</h2>
+                <span>Complaint System</span>
+            </div>
+        </div>
+
+        <!-- 🔥 SEARCH FORM -->
+        <form method="POST" class="search-section">
+            {% csrf_token %}
+
+            <input type="text" name="complaint_id" placeholder="Complaint ID (CMP12345)">
+
+            <select name="status">
+                <option value="all">All Statuses</option>
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+            </select>
+
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- Title -->
+    <h1 class="page-title">Track Your Complaints</h1>
+
+    <!-- Table -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Complaint ID</th>
+                    <th>Issue</th>
+                    <th>Status</th>
+                    <th>Date Reported</th>
+                    <th>Image</th> <!-- ✅ NEW COLUMN -->
+                </tr>
+            </thead>
+            <tbody>
+
+                {% if complaints %}
+                    {% for c in complaints %}
+                    <tr>
+                        <td>{{ c.complaint_id }}</td>
+                        <td>{{ c.complaint_title }}</td>
+
+                        <td>
+                            {% if c.status == "Pending" %}
+                                <span class="badge pending">Pending</span>
+                            {% elif c.status == "In Progress" %}
+                                <span class="badge progress">In Progress</span>
+                            {% else %}
+                                <span class="badge resolved">Resolved</span>
+                            {% endif %}
+                        </td>
+
+                        <td>{{ c.created_at }}</td>
+
+                        <!-- ✅ IMAGE DISPLAY -->
+                        <td>
+                            {% if c.image %}
+                                <img src="{{ c.image.url }}" width="80">
+                            {% else %}
+                                No Image
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                {% else %}
+                    <tr>
+                        <td colspan="5" style="text-align:center;">No complaints found</td>
+                    </tr>
+                {% endif %}
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

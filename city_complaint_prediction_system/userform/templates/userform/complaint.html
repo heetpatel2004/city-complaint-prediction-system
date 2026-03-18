@@ -1,0 +1,74 @@
+{% load static %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Complaint | Smart City</title>
+    <link rel="stylesheet" href="{% static 'userform/complaint.css' %}">
+</head>
+<body>
+
+<div class="form-container">
+
+    <div class="form-header">
+        <h2>Submit a Complaint</h2>
+        <p>Please fill out the form below to report a city issue.</p>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" name="name" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="Enter your email" required>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>Phone Number</label>
+            <input type="tel" name="mobile" placeholder="Enter your phone number" required>
+        </div>
+
+        <div class="input-group">
+            <label>Complaint Category</label>
+            <select name="category" required>
+                <option value="">Select Category</option>
+                <option value="Garbage">Garbage</option>
+                <option value="Water Supply">Water Supply</option>
+                <option value="Road Issues">Road Issues</option>
+                <option value="Street Lights">Street Lights</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Complaint Title</label>
+            <input type="text" name="title" placeholder="Enter complaint title" required>
+        </div>
+
+        <div class="input-group">
+            <label>Describe the Issue</label>
+            <textarea name="description" rows="5" placeholder="Enter the details of the complaint..." required></textarea>
+        </div>
+
+        <div class="input-group">
+            <label>Attach Image (Optional)</label>
+            <input type="file" name="image" accept="image/*">
+        </div>
+
+        <button type="submit" class="submit-btn">
+            Submit Complaint
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

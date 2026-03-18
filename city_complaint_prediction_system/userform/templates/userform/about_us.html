@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - Smart City</title>
+<link rel="stylesheet" href="{% static 'userform/about_us.css' %}">
+</head>
+
+<body>
+{% include 'userform/navbar.html' %}
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div class="hero-text">
+      <h1>About Us</h1>
+      <p>
+        Learn more about our Smart City Complaint Prioritization &
+        Resolution Prediction System.
+      </p>
+    </div>
+
+    <div class="hero-img">
+      <img src="{% static 'userform/images/about_us_hero_image_2.png' %}" alt="Hero Illustration">
+    </div>
+  </div>
+</section>
+
+
+<!-- PROJECT INTRODUCTION -->
+<section class="section">
+  <div class="container grid-2">
+
+    <div>
+      <h2>Project Introduction</h2>
+      <p>
+        The Smart City Complaint Prioritization & Resolution Prediction
+        System is a web-based platform designed to help citizens report
+        city-related issues easily. The system uses machine learning to
+        analyze complaints and predict both their priority level and
+        estimated resolution time, helping city authorities respond faster.
+      </p>
+    </div>
+
+    <div class="img-right">
+      <img src="{% static 'userform/images/project_introduction_2.png' %}" alt="">
+    </div>
+
+  </div>
+</section>
+
+
+<!-- MISSION -->
+<section class="section light">
+
+  <div class="container">
+    <h2 class="mission-txt">Our Mission</h2>
+
+    <p class="center-text">
+      Our mission is to improve communication between citizens and municipal
+      authorities by providing a transparent and efficient complaint
+      management system. We aim to ensure that critical issues receive
+      prompt attention and that city services operate effectively.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- WHAT SYSTEM DOES -->
+<section class="section">
+
+  <div class="container grid-2">
+
+    <div>
+
+      <h2 class="system-txt">What Our System Does</h2>
+
+      <ul class="feature-list">
+        <li>Allows citizens to register complaints online</li>
+        <li>Categorizes complaints based on issue type and severity</li>
+        <li>Predicts complaint priority using machine learning</li>
+        <li>Estimates resolution time for reported issues</li>
+        <li>Helps authorities focus on the most impactful problems</li>
+      </ul>
+
+    </div>
+
+    <div class="img-right">
+      <img src="{% static 'userform/images/system_does_01_2.png' %}" alt="">
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- HOW SYSTEM WORKS -->
+<section class="section light">
+
+<div class="container">
+
+<h2 class="center-text">How the System Works</h2>
+
+<!-- workflow placeholder -->
+<div class="workflow-placeholder">
+
+<!-- <p>Workflow Image Placeholder</p> -->
+
+<!-- replace with your workflow image -->
+<img src="{% static 'userform/images/flowchart.png' %}" alt="Workflow Diagram" class="workflow-image">
+
+</div>
+
+
+<p class="center-text description">
+
+Citizens submit complaints online. The system analyzes details like
+category, area, severity, and affected people. Using machine learning,
+it predicts complaint priority and estimates the expected resolution
+time, helping authorities address the most urgent issues.
+
+</p>
+
+</div>
+</section>
+
+
+<!-- FUTURE IMPROVEMENTS -->
+<section class="section">
+
+<div class="container">
+
+<h2 class="future-text">Future Improvements</h2>
+
+<p class="future-txt">
+We plan to enhance our system by introducing mobile app support,
+real-time notifications, mapping complaints on a city map using GIS,
+and further integration with municipal service systems.
+</p>
+
+</div>
+
+</section>
+{% include 'userform/footer.html' %}
+</body>
+</html>

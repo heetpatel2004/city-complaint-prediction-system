@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Smart City</title>
+    <link rel="stylesheet" href="{% static 'userform/login.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'userform/images/favicon.png' %}">
+</head>
+<body>
+
+<div class="login-container">
+
+    <!-- Logo -->
+    <div class="logo">
+        <img src="{% static 'userform/images/building_2.png' %}" alt="Smart City Logo">
+        <div class="logo-text">
+            <h2>Smart City</h2>
+            <p>Complaint System</p>
+        </div>
+    </div>
+
+    <!-- Login Form -->
+    <div class="form-box">
+        <h3>Login</h3>
+{% if messages %}
+        {% for message in messages %}
+            <div class="message {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" placeholder="username" name="username" required>
+            </div>
+
+            <div class="input-group">
+                <input type="password" placeholder="Password" name="password" required>
+            </div>
+
+            <div class="forgot">
+                <a href="{% url 'userform:password_reset' %}">Forgot Password?</a>
+            </div>
+
+
+            <button type="submit" class="login-btn">Login</button>
+
+            <div class="register">
+                Don't have an account? <a href="{% url 'userform:signup' %}">Register</a>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

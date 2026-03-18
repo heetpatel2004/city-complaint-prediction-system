@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Background Image */
+    background: url("images/complaint_background.png") no-repeat center center;
+    background-size: cover;
+}
+
+/* Main Container */
+.signup-container {
+    width: 420px;
+    background: rgba(255, 255, 255, 0.96);
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 38px;
+    /* justify-content: center; */
+}
+
+.logo-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Logo */
+.logo img {
+    width: 72px;
+    height: 43px;
+    margin-bottom: 15px;
+}
+
+.logo h2 {
+    color: #1f6fd8;
+    font-weight: 600;
+    display: block;
+    white-space: nowrap;
+}
+
+.logo p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* Form Title */
+.form-box h3 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #1f6fd8;
+    outline: none;
+    box-shadow: 0 0 6px rgba(31, 111, 216, 0.3);
+}
+
+/* Terms */
+.terms {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.terms input {
+    margin-right: 8px;
+}
+
+.terms a {
+    color: #1f6fd8;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Button */
+.signup-btn {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(to right, #ff8a2a, #ff6a00);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.signup-btn:hover {
+    opacity: 0.9;
+}
+
+/* Login Link */
+.login-link {
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #1f6fd8;
+    text-decoration: none;
+    font-weight: 600;
+}
