@@ -11,7 +11,7 @@ class Complaint(models.Model):
     CATEGORY_CHOICES = [
         ('Garbage', 'Garbage'),
         ('Water Supply', 'Water Supply'),
-        ('Road Issues', 'Road Issues'),
+        ('Road Damage', 'Road Damage'),
         ('Street Lights', 'Street Lights'),
     ]
 
@@ -19,8 +19,18 @@ class Complaint(models.Model):
     email = models.EmailField(blank=True, null=True)
     mobile = models.CharField(max_length=15)
     category = models.CharField(max_length=50,choices=CATEGORY_CHOICES,default='Garbage')
-    complaint_title = models.CharField(max_length=200)
+    # complaint_title = models.CharField(max_length=200)
     description = models.TextField()
+    area = models.CharField(max_length=100, default="Unknown")
+
+    severity = models.CharField(max_length=50, default="Medium")
+
+    affected_people = models.IntegerField(default=0)
+
+    priority = models.CharField(max_length=50, default="Low")
+
+    resolution_time = models.CharField(max_length=50, default="1")
+    
 
     image = models.ImageField(upload_to='complaints/', blank=True, null=True)
 
@@ -40,4 +50,4 @@ class Complaint(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.complaint_id} - {self.complaint_title}"
+        return f"{self.complaint_id} - {self.catgory}"

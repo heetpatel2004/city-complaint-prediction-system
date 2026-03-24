@@ -58,8 +58,9 @@ ROOT_URLCONF = 'city_complaint_prediction_system.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        # 'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',

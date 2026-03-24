@@ -62,6 +62,21 @@ body {
     color: #444;
 }
 
+/* Number input arrows fix (optional) */
+input[type="number"]::-webkit-inner-spin-button {
+    opacity: 1;
+}
+
+/* Better select styling */
+select {
+    cursor: pointer;
+}
+
+/* Optional: Highlight severity colors */
+select[name="severity"] {
+    font-weight: 400;
+}
+
 input,
 select,
 textarea {

@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Dashboard</title>
+    <link rel="stylesheet" href="{% static 'userform/dashboard.css' %}">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <h2>Complaint Management Dashboard</h2>
+
+    <div class="filters">
+        <select>
+            <option>Area</option>
+        </select>
+
+        <select>
+            <option>Category</option>
+        </select>
+
+        <select>
+            <option>Priority</option>
+        </select>
+
+        <input type="text" placeholder="Search...">
+        <button>Search</button>
+    </div>
+</div>
+
+<!-- TABLE CONTAINER -->
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Area</th>
+                <th>Severity</th>
+                <th>Affected People</th>
+                <th>Priority</th>
+                <th>Resolution Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+{% for c in complaints %}
+<tr>
+    <td>{{ c.id }}</td>
+    <td>{{ c.category }}</td>
+    <td>{{ c.area }}</td>
+
+    <td>
+        <span class="badge {{c.severity|lower}}">
+            {{c.severity}}
+        </span>
+    </td>
+
+    <td>{{ c.affected_people }}</td>
+
+    <td>
+        <span class="badge {{ c.priority|lower }}">
+            {{ c.priority }}
+        </span>
+    </td>
+
+    <td>{{ c.resolution_time }}</td>
+
+    <td>
+        <span class="badge {{ c.status|lower }}">
+            {{ c.status }}
+        </span>
+    </td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="8">No complaints available</td>
+</tr>
+{% endfor %}
+</tbody>
+    </table>
+
+    <!-- PAGINATION -->
+    <div class="pagination">
+        <span>&lt;&lt; Previous</span>
+        <span class="active">1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>Next &gt;&gt;</span>
+    </div>
+</div>
+
+</body>
+</html>
