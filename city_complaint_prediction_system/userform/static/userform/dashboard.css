@@ -68,14 +68,23 @@ tbody tr {
 
 /* BADGES */
 .badge {
-    padding: 5px 12px;
+    padding: 7px 14px;
     border-radius: 8px;
     color: white;
-    font-size: 12px;
-}
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}  
+
+.Low { background: #28a745; }
+.Medium { background: #ff8c1a; }
+.High { background: #ff4d4d; }
+
+.Pending { background: #f4b400; }
+.Resolved { background: #28a745; }
 
 /* COLORS */
-.red {
+/* .red {
     background: #ff4d4d;
 }
 
@@ -89,12 +98,12 @@ tbody tr {
 
 .green {
     background: #28a745;
-}
+} */ 
 
 /* PAGINATION */
-.pagination {
+/* .pagination {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .pagination span {
@@ -106,6 +115,53 @@ tbody tr {
 }
 
 .pagination .active {
+    background: #2c5aa0;
+    color: white;
+} */
+
+/* PAGINATION CONTAINER */
+/* PAGINATION */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* COMMON BUTTON STYLE */
+.page-btn {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    background: #9fa6b0;
+    color: white;
+    transition: 0.3s;
+}
+
+/* HOVER (only for clickable links) */
+a.page-btn:hover {
+    background: #a5acb7;
+}
+
+/* DISABLED BUTTON */
+.page-btn.disabled {
+    background: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* PAGE NUMBER */
+.page-number {
+    margin: 5px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    background: #e0e0e0;
+    font-weight: bold;
+}
+
+/* ACTIVE PAGE */
+.page-number.active {
     background: #2c5aa0;
     color: white;
 }
@@ -127,3 +183,94 @@ tbody tr {
         padding: 10px;
     }
 }
+
+/* body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+} */
+
+/* HEADER */
+/* .header {
+    background: #2c5aa0;
+    color: white;
+    padding: 20px;
+    text-align: center;
+} */
+
+/* CONTAINER */
+/* .container {
+    margin: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px; */
+/* } */
+
+/* TABLE */
+/* table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #2c5aa0;
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+tbody tr {
+    border-bottom: 1px solid #ddd;
+} */
+
+/* BADGE COMMON */
+/* .badge {
+    padding: 6px 12px;
+    border-radius: 10px;
+    color: white;
+    /* color: #2c5aa0; */
+    /* font-size: 12px;  */
+/* } */
+
+/* SEVERITY COLORS */
+/* .severity-Low {
+    background: #28a745;
+}
+
+.severity-Medium {
+    background: #ff8c1a;
+}
+
+.severity-High {
+    background: #ff4d4d;
+} */
+
+/* PRIORITY COLORS */
+/* .priority-Low {
+    background: #28a745;
+}
+
+.priority-Medium {
+    background: #f4b400;
+}
+
+.priority-High {
+    background: #ff4d4d;
+} */
+
+
+/* STATUS COLORS */
+/* .status-Pending {
+    background: #f4b400;
+}
+
+.status-In\ Progress {
+    background: #17a2b8;
+}
+
+.status-Resolved {
+    background: #28a745;
+} */

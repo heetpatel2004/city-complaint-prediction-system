@@ -32,5 +32,6 @@ def predict(category, area, severity, affected_people, month, day_of_week, is_we
 
     # Decode
     priority = le_priority.inverse_transform([priority])[0]
+    priority = priority.capitalize()
 
     return priority, round(days, 2)

@@ -14,7 +14,7 @@
 <div class="header">
     <h2>Complaint Management Dashboard</h2>
 
-    <div class="filters">
+    {% comment %} <div class="filters">
         <select>
             <option>Area</option>
         </select>
@@ -29,7 +29,36 @@
 
         <input type="text" placeholder="Search...">
         <button>Search</button>
-    </div>
+    </div> {% endcomment %}
+    <form method="GET" class="filters">
+    <select name="area">
+        <option value="">All Areas</option>
+        <option value="Ward 1">Ward 1</option>
+        <option value="Ward 2">Ward 2</option>
+        <option value="Ward 3">Ward 3</option>
+        <option value="Ward 4">Ward 4</option>
+        <option value="Ward 5">Ward 5</option>
+    </select>
+
+    <select name="category">
+        <option value="">All Categories</option>
+        <option value="Garbage">Garbage</option>
+        <option value="Water Supply">Water Supply</option>
+        <option value="Road Damage">Road Damage</option>
+        <option value="Street Lights">Street Lights</option>
+    </select>
+
+    <select name="priority">
+        <option value="">All Priority</option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+    </select>
+
+    <input type="text" name="search" placeholder="Search...">
+
+    <button type="submit">Search</button>
+</form>
 </div>
 
 <!-- TABLE CONTAINER -->
@@ -51,12 +80,12 @@
         <tbody>
 {% for c in complaints %}
 <tr>
-    <td>{{ c.id }}</td>
+    <td>{{ c.complaint_id }}</td>
     <td>{{ c.category }}</td>
     <td>{{ c.area }}</td>
 
     <td>
-        <span class="badge {{c.severity|lower}}">
+        <span class="badge {{c.severity}}">
             {{c.severity}}
         </span>
     </td>
@@ -64,7 +93,7 @@
     <td>{{ c.affected_people }}</td>
 
     <td>
-        <span class="badge {{ c.priority|lower }}">
+        <span class="badge {{ c.priority }}">
             {{ c.priority }}
         </span>
     </td>
@@ -72,7 +101,7 @@
     <td>{{ c.resolution_time }}</td>
 
     <td>
-        <span class="badge {{ c.status|lower }}">
+        <span class="badge {{ c.status }}">
             {{ c.status }}
         </span>
     </td>
@@ -86,14 +115,100 @@
     </table>
 
     <!-- PAGINATION -->
-    <div class="pagination">
-        <span>&lt;&lt; Previous</span>
-        <span class="active">1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>Next &gt;&gt;</span>
-    </div>
+ <div class="pagination">
+
+    {% if complaints.has_previous %}
+        <a class="page-btn" href="?page={{ complaints.previous_page_number }}">← Previous</a>
+    {% else %}
+        <span class="page-btn disabled">← Previous</span>
+    {% endif %}
+
+    <span class="page-number active">{{ complaints.number }}</span>
+
+    {% if complaints.has_next %}
+        <a class="page-btn" href="?page={{ complaints.next_page_number }}">Next →</a>
+    {% else %}
+        <span class="page-btn disabled">Next →</span>
+    {% endif %}
+
 </div>
 
 </body>
 </html>
+
+{% comment %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Dashboard</title>
+    <link rel="stylesheet" href="{% static 'userform/dashboard.css' %}">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <h2>Complaint Dashboard</h2>
+</div>
+
+<!-- TABLE -->
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Area</th>
+                <th>Severity</th>
+                <th>Affected</th>
+                <th>Priority</th>
+                <th>Days</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for c in complaints %}
+            <tr>
+                <td>{{ c.id }}</td>
+                <td>{{ c.category }}</td>
+                <td>{{ c.area }}</td>
+
+                <!-- Severity -->
+                <td>
+                    <span class="badge severity-{{ c.severity }}">
+                        {{ c.severity }}
+                    </span>
+                </td>
+
+                <td>{{ c.affected_people }}</td>
+
+                <!-- Priority -->
+                <td>
+                    <span class="badge priority-{{ c.priority }}">
+                        {{ c.priority }}
+                    </span>
+                </td>
+
+                <td>{{ c.resolution_time }}</td>
+
+                <!-- Status -->
+                <td>
+                    <span class="badge status-{{ c.status }}">
+                        {{ c.status }}
+                    </span>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">No complaints available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html> {% endcomment %}

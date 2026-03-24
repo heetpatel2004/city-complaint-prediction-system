@@ -5,6 +5,7 @@ from django.contrib import messages
 from .models import Complaint
 from .ml_model import predict
 import pandas as pd
+from django.core.paginator import Paginator
 
 
 
@@ -107,7 +108,7 @@ def submit_complaint(request):
         is_weekend = 1 if day_of_week >= 5 else 0
         category = request.POST.get("category")
         area = request.POST.get("area")
-        severity = request.POST.get('severity')   or 'Medium'
+        severity = (request.POST.get('severity')   or 'Medium').capitalize()
         affected_people = int(request.POST.get('affected_people'))
         # title = request.POST.get("title")
         description = request.POST.get("description")
@@ -171,27 +172,51 @@ def track_complaint(request):
 
 # admin dashboard
 # ✅ ADMIN DASHBOARD
-def admin_dashboard(request):
-    if request.method == "POST":
-        complaint_id = request.POST.get("complaint_id")
-        new_status = request.POST.get("status")
+# def admin_dashboard(request):
+#     if request.method == "POST":
+#         complaint_id = request.POST.get("complaint_id")
+#         new_status = request.POST.get("status")
 
-        complaint = Complaint.objects.get(id=complaint_id)
-        complaint.status = new_status
-        complaint.save()
+#         complaint = Complaint.objects.get(id=complaint_id)
+#         complaint.status = new_status
+#         complaint.save()
 
-        return redirect("userform:admin_dashboard")
+#         return redirect("userform:admin_dashboard")
 
-    complaints = Complaint.objects.all().order_by('-created_at')
-    return render(request, "userform/admin_dashboard.html", {"complaints": complaints})
+#     complaints = Complaint.objects.all().order_by('-created_at')
+#     return render(request, "userform/admin_dashboard.html", {"complaints": complaints})
 
 
 
 def dashboard(request):
     complaints = Complaint.objects.all() # 🔥 Fetch from DB
     
-    for c in complaints:
-            print(c.severity, c.priority, c.status)
+    # for c in complaints:
+    #         print(c.severity, c.priority, c.status)
+    # Get filter values
+    area = request.GET.get('area')
+    category = request.GET.get('category')
+    priority = request.GET.get('priority')
+    search = request.GET.get('search')
+
+    # Apply filters
+    if area:
+        complaints = complaints.filter(area=area)
+
+    if category:
+        complaints = complaints.filter(category=category)
+
+    if priority:
+        complaints = complaints.filter(priority=priority)
+
+    if search:
+        complaints = complaints.filter(description__icontains=search)
+        
+    paginator = Paginator(complaints, 10)  # 10 per page
+
+    page_number = request.GET.get('page')
+    complaints = paginator.get_page(page_number)
+
     return render(request, 'userform/dashboard.html', {'complaints': complaints})
 
 
