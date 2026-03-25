@@ -6,6 +6,7 @@ from .models import Complaint
 from .ml_model import predict
 import pandas as pd
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import user_passes_test
 
 
 
@@ -186,14 +187,14 @@ def track_complaint(request):
 #     complaints = Complaint.objects.all().order_by('-created_at')
 #     return render(request, "userform/admin_dashboard.html", {"complaints": complaints})
 
+def admin_check(user):
+    return user.is_superuser  # OR user.is_staff
 
 
+@user_passes_test(admin_check)
 def dashboard(request):
     complaints = Complaint.objects.all() # 🔥 Fetch from DB
-    
-    # for c in complaints:
-    #         print(c.severity, c.priority, c.status)
-    # Get filter values
+
     area = request.GET.get('area')
     category = request.GET.get('category')
     priority = request.GET.get('priority')
