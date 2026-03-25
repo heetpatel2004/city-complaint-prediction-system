@@ -166,6 +166,24 @@ a.page-btn:hover {
     color: white;
 }
 
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background: #2c5aa0;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d3f73;
+}
+
+select {
+    padding: 5px;
+    border-radius: 5px;
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .header {

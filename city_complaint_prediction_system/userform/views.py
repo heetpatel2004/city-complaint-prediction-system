@@ -248,3 +248,32 @@ def dashboard(request):
 
 #         return redirect('dashboard')
 #     return render(request, "userform/complaint.html")
+from django.contrib.auth.decorators import user_passes_test
+
+# Check admin
+def is_admin(user):
+    return user.is_superuser
+
+
+@user_passes_test(is_admin)
+def update_status(request):
+    if request.method == "POST":
+        complaint_id = request.POST.get("id")
+        new_status = request.POST.get("status")
+
+        complaint = Complaint.objects.get(id=complaint_id)
+        complaint.status = new_status
+        complaint.save()
+
+    return redirect("userform:dashboard")
+
+
+@user_passes_test(is_admin)
+def delete_complaint(request):
+    if request.method == "POST":
+        complaint_id = request.POST.get("id")
+
+        complaint = Complaint.objects.get(id=complaint_id)
+        complaint.delete()
+
+    return redirect("userform:dashboard")

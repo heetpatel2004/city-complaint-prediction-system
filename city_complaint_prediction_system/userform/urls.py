@@ -16,6 +16,8 @@ urlpatterns = [
     # admin section
     # path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('update-status/', views.update_status, name='update_status'),
+    path('delete-complaint/', views.delete_complaint, name='delete_complaint'),
 
     path(
         'password-reset/',

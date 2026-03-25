@@ -74,6 +74,7 @@
                 <th>Priority</th>
                 <th>Resolution Time</th>
                 <th>Status</th>
+                <th>Actions</th>
             </tr>
         </thead>
 
@@ -105,6 +106,34 @@
             {{ c.status }}
         </span>
     </td>
+    <td>
+    {% if request.user.is_superuser %}
+    
+    <!-- UPDATE STATUS -->
+    <form method="POST" action="{% url 'userform:update_status' %}" style="display:inline;">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{ c.id }}">
+        
+        <select name="status">
+            <option value="Pending" {% if c.status == "Pending" %}selected{% endif %}>Pending</option>
+            <option value="In Progress" {% if c.status == "In Progress" %}selected{% endif %}>In Progress</option>
+            <option value="Resolved" {% if c.status == "Resolved" %}selected{% endif %}>Resolved</option>
+        </select>
+
+        <button type="submit">Update</button>
+    </form>
+
+    <!-- DELETE -->
+    <form method="POST" action="{% url 'userform:delete_complaint' %}" style="display:inline;">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{ c.id }}">
+        <button type="submit" onclick="return confirm('Delete this complaint?')">Delete</button>
+    </form>
+
+    {% else %}
+        No Permission
+    {% endif %}
+</td>
 </tr>
 {% empty %}
 <tr>
