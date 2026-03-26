@@ -1,0 +1,294 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+}
+
+/* HEADER */
+.header {
+    background: linear-gradient(to right, #2c5aa0, #3b6fc1);
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filters select,
+.filters input {
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+}
+
+.filters button {
+    background: #4da3ff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* CONTAINER */
+.container {
+    margin: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: linear-gradient(to right, #2c5aa0, #3b6fc1);
+    color: white;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+}
+
+tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+/* BADGES */
+.badge {
+    padding: 7px 14px;
+    border-radius: 8px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}  
+
+.Low { background: #28a745; }
+.Medium { background: #ff8c1a; }
+.High { background: #ff4d4d; }
+
+.Pending { background: #f4b400; }
+.Resolved { background: #28a745; }
+
+/* COLORS */
+/* .red {
+    background: #ff4d4d;
+}
+
+.orange {
+    background: #ff8c1a;
+}
+
+.yellow {
+    background: #f4b400;
+}
+
+.green {
+    background: #28a745;
+} */ 
+
+/* PAGINATION */
+/* .pagination {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.pagination span {
+    margin: 5px;
+    padding: 8px 12px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pagination .active {
+    background: #2c5aa0;
+    color: white;
+} */
+
+/* PAGINATION CONTAINER */
+/* PAGINATION */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* COMMON BUTTON STYLE */
+.page-btn {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    background: #9fa6b0;
+    color: white;
+    transition: 0.3s;
+}
+
+/* HOVER (only for clickable links) */
+a.page-btn:hover {
+    background: #a5acb7;
+}
+
+/* DISABLED BUTTON */
+.page-btn.disabled {
+    background: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* PAGE NUMBER */
+.page-number {
+    margin: 5px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    background: #e0e0e0;
+    font-weight: bold;
+}
+
+/* ACTIVE PAGE */
+.page-number.active {
+    background: #2c5aa0;
+    color: white;
+}
+
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background: #2c5aa0;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d3f73;
+}
+
+select {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filters {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    th, td {
+        font-size: 12px;
+        padding: 10px;
+    }
+}
+
+/* body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+} */
+
+/* HEADER */
+/* .header {
+    background: #2c5aa0;
+    color: white;
+    padding: 20px;
+    text-align: center;
+} */
+
+/* CONTAINER */
+/* .container {
+    margin: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px; */
+/* } */
+
+/* TABLE */
+/* table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #2c5aa0;
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+tbody tr {
+    border-bottom: 1px solid #ddd;
+} */
+
+/* BADGE COMMON */
+/* .badge {
+    padding: 6px 12px;
+    border-radius: 10px;
+    color: white;
+    /* color: #2c5aa0; */
+    /* font-size: 12px;  */
+/* } */
+
+/* SEVERITY COLORS */
+/* .severity-Low {
+    background: #28a745;
+}
+
+.severity-Medium {
+    background: #ff8c1a;
+}
+
+.severity-High {
+    background: #ff4d4d;
+} */
+
+/* PRIORITY COLORS */
+/* .priority-Low {
+    background: #28a745;
+}
+
+.priority-Medium {
+    background: #f4b400;
+}
+
+.priority-High {
+    background: #ff4d4d;
+} */
+
+
+/* STATUS COLORS */
+/* .status-Pending {
+    background: #f4b400;
+}
+
+.status-In\ Progress {
+    background: #17a2b8;
+}
+
+.status-Resolved {
+    background: #28a745;
+} */

@@ -35,6 +35,10 @@
             <label>Phone Number</label>
             <input type="tel" name="mobile" placeholder="Enter your phone number" required>
         </div>
+        <div class="input-group">
+            <label>Complaint Date</label>
+            <input type="date" name="complaint_date" required>
+        </div>
 
         <div class="input-group">
             <label>Complaint Category</label>
@@ -42,19 +46,43 @@
                 <option value="">Select Category</option>
                 <option value="Garbage">Garbage</option>
                 <option value="Water Supply">Water Supply</option>
-                <option value="Road Issues">Road Issues</option>
+                <option value="Road Damage">Road Damage</option>
                 <option value="Street Lights">Street Lights</option>
             </select>
         </div>
 
         <div class="input-group">
-            <label>Complaint Title</label>
-            <input type="text" name="title" placeholder="Enter complaint title" required>
+            <label>Area</label>
+            {% comment %} <input type="text" name="area" placeholder="Enter your area" required> {% endcomment %}
+            <select name="area" id="area" required>
+            <option value="">Select Area</option>
+            <option value="Ward 1">Ward 1</option>
+            <option value="Ward 2">Ward 2</option>
+            <option value="Ward 3">Ward 3</option>
+            <option value="Ward 4">Ward 4</option>
+            <option value="Ward 5">Ward 5</option>
+    </select>
         </div>
 
         <div class="input-group">
+                <label>Severity</label>
+                <select name="severity" required>
+                    <option value="">Select Severity</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Affected People</label>
+                <input type="number" name="affected_people" placeholder="Enter number of affected people" min="1"
+                    required>
+            </div>
+
+        <div class="input-group">
             <label>Describe the Issue</label>
-            <textarea name="description" rows="5" placeholder="Enter the details of the complaint..." required></textarea>
+            <textarea name="description" rows="5" placeholder="Enter the details of the complaint..." ></textarea>
         </div>
 
         <div class="input-group">

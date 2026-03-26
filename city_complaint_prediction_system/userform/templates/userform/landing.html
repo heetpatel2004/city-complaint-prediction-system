@@ -10,7 +10,14 @@
 </head>
 <body>
 
-<!-- ================= NAVBAR ================= -->
+    {% comment %} {% if messages %}
+    {% for message in messages %}
+        <div class="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% endif %}
+<!-- ================= NAVBAR ================= --> {% endcomment %}
 {% comment %} <header>
     <div class="logo">
         <img src="{% static 'userform/images/building_2.png' %}" alt="Logo">
@@ -126,3 +133,8 @@
    {% django_browser_reload_script %} {% endcomment %}
 {% comment %} </body>
 </html>  {% endcomment %}
+<script>
+setTimeout(() => {
+    document.querySelector('.alert').style.display = 'none';
+}, 3000);
+</script>

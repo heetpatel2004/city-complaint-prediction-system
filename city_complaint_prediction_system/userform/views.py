@@ -3,6 +3,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib import messages
 from .models import Complaint
+from .ml_model import predict
+import pandas as pd
+from django.core.paginator import Paginator
+from django.contrib.auth.decorators import user_passes_test
+
+
+
 import re
 
 def home(request):
@@ -94,22 +101,55 @@ def submit_complaint(request):
         name = request.POST.get("name")
         email = request.POST.get("email")
         mobile = request.POST.get("mobile")
+
+        date = request.POST.get("complaint_date")
+        date = pd.to_datetime(date)
+        month = date.month
+        day_of_week = date.dayofweek
+        is_weekend = 1 if day_of_week >= 5 else 0
         category = request.POST.get("category")
-        title = request.POST.get("title")
+        area = request.POST.get("area")
+        severity = (request.POST.get('severity')   or 'Medium').capitalize()
+        affected_people = int(request.POST.get('affected_people'))
+        # title = request.POST.get("title")
         description = request.POST.get("description")
         image = request.FILES.get("image")
+        
+        print("CATEGORY RECEIVED:", category)
+        
+        priority, resolution_time = predict(
+                category,
+                area,
+                severity,
+                affected_people,
+                month,
+                day_of_week,
+                is_weekend
+                
+               )
+        print("PREDICT OUTPUT:", priority, resolution_time)
 
         complaint = Complaint.objects.create(
             name=name,
             email=email,
             mobile=mobile,
+            # month=month,
+            # day_of_week=day_of_week,
+            # is_weekend=is_weekend,
             category=category,
-            complaint_title=title,
+            area=area,
+            severity=severity,
+            affected_people=affected_people,
+            priority=priority or "Low",
+            resolution_time=resolution_time or "1",
+            # complaint_title=title,
             description=description,
+            status="Pending",
             image=image
         )
 
-        return render(request, "userform/success.html", {"complaint": complaint})
+        # messages.success(request, "Complaint submitted successfully!")
+        return redirect("userform:home")   # name of your home URL
 
     return render(request, "userform/complaint.html")
 
@@ -117,7 +157,7 @@ def submit_complaint(request):
 # ✅ TRACK COMPLAINT
 def track_complaint(request):
     complaints = Complaint.objects.all().order_by('-created_at')
-
+    
     if request.method == "POST":
         complaint_id = request.POST.get("complaint_id")
         status = request.POST.get("status")
@@ -133,16 +173,108 @@ def track_complaint(request):
 
 # admin dashboard
 # ✅ ADMIN DASHBOARD
-def admin_dashboard(request):
+# def admin_dashboard(request):
+#     if request.method == "POST":
+#         complaint_id = request.POST.get("complaint_id")
+#         new_status = request.POST.get("status")
+
+#         complaint = Complaint.objects.get(id=complaint_id)
+#         complaint.status = new_status
+#         complaint.save()
+
+#         return redirect("userform:admin_dashboard")
+
+#     complaints = Complaint.objects.all().order_by('-created_at')
+#     return render(request, "userform/admin_dashboard.html", {"complaints": complaints})
+
+def admin_check(user):
+    return user.is_superuser  # OR user.is_staff
+
+
+@user_passes_test(admin_check)
+def dashboard(request):
+    complaints = Complaint.objects.all() # 🔥 Fetch from DB
+
+    area = request.GET.get('area')
+    category = request.GET.get('category')
+    priority = request.GET.get('priority')
+    search = request.GET.get('search')
+
+    # Apply filters
+    if area:
+        complaints = complaints.filter(area=area)
+
+    if category:
+        complaints = complaints.filter(category=category)
+
+    if priority:
+        complaints = complaints.filter(priority=priority)
+
+    if search:
+        complaints = complaints.filter(description__icontains=search)
+        
+    paginator = Paginator(complaints, 10)  # 10 per page
+
+    page_number = request.GET.get('page')
+    complaints = paginator.get_page(page_number)
+
+    return render(request, 'userform/dashboard.html', {'complaints': complaints})
+
+
+
+# def submit_complaint(request):
+
+#     if request.method == "POST":
+
+#         category = request.POST['category']
+#         area = request.POST['area']
+#         severity = request.POST['severity']
+#         affected_people = int(request.POST['affected_people'])
+#         # department = request.POST['department']
+
+#         # 🔥 Call ML function
+#         priority, days = predict(category, area, severity, affected_people, department)
+
+#         # Save to DB
+#         Complaint.objects.create(
+#             category=category,
+#             area=area,
+#             severity=severity,
+#             affected_people=affected_people,
+#             # department=department,
+#             priority=priority,
+#             resolution_days=days,
+#             status="Pending"
+#         )
+
+#         return redirect('dashboard')
+#     return render(request, "userform/complaint.html")
+from django.contrib.auth.decorators import user_passes_test
+
+# Check admin
+def is_admin(user):
+    return user.is_superuser
+
+
+@user_passes_test(is_admin)
+def update_status(request):
     if request.method == "POST":
-        complaint_id = request.POST.get("complaint_id")
+        complaint_id = request.POST.get("id")
         new_status = request.POST.get("status")
 
         complaint = Complaint.objects.get(id=complaint_id)
         complaint.status = new_status
         complaint.save()
 
-        return redirect("userform:admin_dashboard")
+    return redirect("userform:dashboard")
 
-    complaints = Complaint.objects.all().order_by('-created_at')
-    return render(request, "userform/admin_dashboard.html", {"complaints": complaints})
+
+@user_passes_test(is_admin)
+def delete_complaint(request):
+    if request.method == "POST":
+        complaint_id = request.POST.get("id")
+
+        complaint = Complaint.objects.get(id=complaint_id)
+        complaint.delete()
+
+    return redirect("userform:dashboard")

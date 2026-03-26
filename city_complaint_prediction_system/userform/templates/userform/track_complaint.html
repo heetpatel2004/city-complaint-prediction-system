@@ -59,7 +59,7 @@
                     {% for c in complaints %}
                     <tr>
                         <td>{{ c.complaint_id }}</td>
-                        <td>{{ c.complaint_title }}</td>
+                        <td>{{ c.category }}</td>
 
                         <td>
                             {% if c.status == "Pending" %}
