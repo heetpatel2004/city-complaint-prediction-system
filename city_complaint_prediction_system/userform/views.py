@@ -95,6 +95,9 @@ def user_logout(request):
 def about_us(request):
     return render(request, "userform/about_us.html")
 
+def contact(request):
+    return render(request, "userform/contact.html")
+
 # submit complaint
 def submit_complaint(request):
     if request.method == "POST":

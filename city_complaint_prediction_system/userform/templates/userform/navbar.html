@@ -12,9 +12,11 @@
     </div>
 
     <nav>
-        <a href="#">Home</a>
+        <a href="{% url 'userform:home' %}">Home</a>
         <a href="{% url 'userform:about_us' %}">About</a>
-        <a href="#">Contact</a>
+        <a href="{% url 'userform:contact' %}">Contact</a>
+        
+
          {% if user.is_authenticated %}
         <span class="text" style="color: #1f6fd8; font-weight: 500; padding:0 5px 0 15px;">
             Welcome, <b>{{ user.username }}!</b>        </span>
