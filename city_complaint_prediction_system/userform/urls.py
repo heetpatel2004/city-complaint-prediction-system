@@ -19,6 +19,8 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('update-status/', views.update_status, name='update_status'),
     path('delete-complaint/', views.delete_complaint, name='delete_complaint'),
+    path('dashboard-data/', views.complaint_dashboard_data, name='complaint_dashboard_data'),
+    path('analysis/', views.analysis_page, name='analysis'),
 
     path(
         'password-reset/',
