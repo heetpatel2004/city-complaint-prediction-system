@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="{% static 'userform/contact.css' %}">
+</head>
+<body>
+{% include 'userform/navbar.html' %}
+<section class="contact-section">
+
+    <!-- Heading -->
+    <div class="contact-header">
+        <h1>Contact Us</h1>
+        <p>Get in touch with us</p>
+    </div>
+
+    <!-- Main Container -->
+    <div class="contact-container">
+
+        <!-- Left Side -->
+        <div class="contact-info">
+            <h2>Contact Information</h2>
+
+            <div class="info-box">
+                <div class="icon">📍</div>
+                <div>
+                    <h4>Our Address</h4>
+                    <p>123 Smart City, Gujarat</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="icon">📞</div>
+                <div>
+                    <h4>Call Us</h4>
+                    <p>+91 9876543210</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="icon">✉️</div>
+                <div>
+                    <h4>Email Us</h4>
+                    <p>smartcity@gmail.com</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side -->
+        <div class="contact-form">
+            <h2>Send Us a Message</h2>
+
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Subject">
+                <textarea placeholder="Your Message"></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

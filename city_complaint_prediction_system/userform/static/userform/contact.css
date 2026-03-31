@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Background */
+body {
+    /* background: #0b1f3a; */
+    background:#e2e5eb;
+    color:#333
+    /* color: white; */
+}
+
+/* Section */
+.contact-section {
+    padding: 60px 10%;
+}
+
+/* Header */
+.contact-header h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.contact-header p {
+    color: #7fa8ff;
+    margin-bottom: 40px;
+}
+
+/* Container */
+.contact-container {
+    display: flex;
+    gap: 40px;
+}
+
+/* LEFT SIDE */
+.contact-info {
+    flex: 1;
+}
+
+.contact-info h2 {
+    margin-bottom: 20px;
+}
+
+.info-box {
+    background: #7fa8ff;;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.icon {
+    font-size: 22px;
+    background: orange;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+/* RIGHT SIDE */
+.contact-form {
+    flex: 1;
+}
+
+.contact-form h2 {
+    margin-bottom: 20px;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #3b5b9c;
+    border-radius: 6px;
+    background: transparent;
+    color: white;
+}
+
+form textarea {
+    height: 120px;
+    resize: none;
+}
+
+form button {
+    background: orange;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background: #ff8c00;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+    }
+
+    .contact-header h1 {
+        font-size: 32px;
+    }
+}

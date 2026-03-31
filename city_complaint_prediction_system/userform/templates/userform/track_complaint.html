@@ -16,8 +16,8 @@
         <div class="logo-section">
             <img src="{% static 'userform/images/building_2.png' %}" alt="logo">
             <div>
-                <h2>Smart City</h2>
-                <span>Complaint System</span>
+                <h2>City Complaint</h2>
+                <span>Prioritization System</span>
             </div>
         </div>
 
@@ -64,7 +64,7 @@
                         <td>
                             {% if c.status == "Pending" %}
                                 <span class="badge pending">Pending</span>
-                            {% elif c.status == "In Progress" %}
+                            {% elif c.status == "InProgress" %}
                                 <span class="badge progress">In Progress</span>
                             {% else %}
                                 <span class="badge resolved">Resolved</span>

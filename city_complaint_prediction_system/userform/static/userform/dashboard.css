@@ -81,6 +81,7 @@ tbody tr {
 .High { background: #ff4d4d; }
 
 .Pending { background: #f4b400; }
+.InProgress { background: #17a2b8; }
 .Resolved { background: #28a745; }
 
 /* COLORS */

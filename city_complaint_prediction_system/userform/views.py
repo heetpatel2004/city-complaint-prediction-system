@@ -7,6 +7,9 @@ from .ml_model import predict
 import pandas as pd
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import user_passes_test
+from django.http import JsonResponse
+from django.db.models import Count
+from django.db.models.functions import TruncDate
 
 
 
@@ -95,6 +98,9 @@ def user_logout(request):
 def about_us(request):
     return render(request, "userform/about_us.html")
 
+def contact(request):
+    return render(request, "userform/contact.html")
+
 # submit complaint
 def submit_complaint(request):
     if request.method == "POST":
@@ -170,6 +176,26 @@ def track_complaint(request):
 
     return render(request, "userform/track_complaint.html", {"complaints": complaints})
 
+def complaint_dashboard_data(request):
+
+    # Status Data
+    status_data = Complaint.objects.values('status').annotate(count=Count('status'))
+
+    # Category Data
+    category_data = Complaint.objects.values('category').annotate(count=Count('category'))
+
+    # Trend Data (date wise)
+    trend_data = Complaint.objects.annotate(date=TruncDate('created_at')) \
+        .values('date').annotate(count=Count('id')).order_by('date')
+
+    return JsonResponse({
+        "status": list(status_data),
+        "category": list(category_data),
+        "trend": list(trend_data),
+    })
+  
+
+
 
 # admin dashboard
 # ✅ ADMIN DASHBOARD
@@ -219,6 +245,10 @@ def dashboard(request):
     complaints = paginator.get_page(page_number)
 
     return render(request, 'userform/dashboard.html', {'complaints': complaints})
+
+@user_passes_test(admin_check, login_url='/login/')  
+def analysis_page(request):
+      return render(request, 'userform/analysis.html')
 
 
 

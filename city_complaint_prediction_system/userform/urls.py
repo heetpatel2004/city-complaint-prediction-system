@@ -13,11 +13,14 @@ urlpatterns = [
     path('track/', views.track_complaint, name='track_complaint'),
     path('logout/', views.user_logout, name='logout'),
     path('about/', views.about_us, name='about_us'),
+    path('contact/', views.contact, name='contact'),
     # admin section
     # path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('update-status/', views.update_status, name='update_status'),
     path('delete-complaint/', views.delete_complaint, name='delete_complaint'),
+    path('dashboard-data/', views.complaint_dashboard_data, name='complaint_dashboard_data'),
+    path('analysis/', views.analysis_page, name='analysis'),
 
     path(
         'password-reset/',

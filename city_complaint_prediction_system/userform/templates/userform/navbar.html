@@ -6,15 +6,17 @@
     <div class="logo">
         <img src="{% static 'userform/images/building_2.png' %}" alt="Logo">
         <div class="logo-text">
-        <h3>Smart City</h3>
-        <p>Complaint System</p>
+        <h3>City Complaint</h3>
+        <p>Prioritization System</p>
         </div>
     </div>
 
     <nav>
-        <a href="#">Home</a>
+        <a href="{% url 'userform:home' %}">Home</a>
         <a href="{% url 'userform:about_us' %}">About</a>
-        <a href="#">Contact</a>
+        <a href="{% url 'userform:contact' %}">Contact</a>
+        
+
          {% if user.is_authenticated %}
         <span class="text" style="color: #1f6fd8; font-weight: 500; padding:0 5px 0 15px;">
             Welcome, <b>{{ user.username }}!</b>        </span>

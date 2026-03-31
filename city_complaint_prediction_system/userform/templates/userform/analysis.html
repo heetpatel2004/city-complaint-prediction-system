@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Complaint Analytics</title>
+        
+    {% load static %}
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'userform/analysis.css' %}">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Heading -->
+    <h1>Complaint Analytics</h1>
+
+    <!-- Top Section -->
+    <div class="top-section">
+
+        <!-- Status Chart -->
+        <div class="card">
+            <h3>Complaints by Status</h3>
+            <canvas id="statusChart"></canvas>
+        </div>
+
+        <!-- Category Chart -->
+        <div class="card">
+            <h3>Complaints by Category</h3>
+            <canvas id="categoryChart"></canvas>
+        </div>
+
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="bottom-section">
+
+        <!-- Trend Chart -->
+        <div class="card large">
+            <h3>Complaint Trends</h3>
+            <canvas id="trendChart"></canvas>
+        </div>
+
+        <!-- Summary -->
+        <div class="card small">
+            <h3>Summary</h3>
+            <ul id="summaryList">
+                <!-- Dynamic data -->
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- JS -->
+<script src="{% static 'userform/analysis.js' %}"></script>
+
+</body>
+</html>
