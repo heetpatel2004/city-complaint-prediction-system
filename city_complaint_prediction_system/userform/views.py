@@ -66,9 +66,10 @@ def signup(request):
             password=password
         )
         user.save()
+        auth_login(request, user)
 
         messages.success(request, "Account created successfully")
-        return redirect("userform:login")
+        return redirect("userform:home")
 
     return render(request, "userform/signup.html")
 
@@ -82,6 +83,7 @@ def user_login(request):
 
         if user is not None:
             auth_login(request, user)
+            messages.success(request, "Login Successful!")
             return redirect("userform:home")
         else:
             messages.error(request, "Invalid username or password")
