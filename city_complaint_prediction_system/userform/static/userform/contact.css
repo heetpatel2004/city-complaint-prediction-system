@@ -8,8 +8,8 @@
 /* Background */
 body {
     /* background: #0b1f3a; */
-    background:#e2e5eb;
-    color:#333
+    background:#f5f7fa;
+    color:#3a3a3a
     /* color: white; */
 }
 
@@ -79,7 +79,8 @@ form textarea {
     border: 1px solid #3b5b9c;
     border-radius: 6px;
     background: transparent;
-    color: white;
+    color: rgb(14, 14, 14);
+    font-size: medium;
 }
 
 form textarea {

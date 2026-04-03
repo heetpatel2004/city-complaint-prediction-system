@@ -53,13 +53,14 @@
         <div class="contact-form">
             <h2>Send Us a Message</h2>
 
-            <form>
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <input type="text" placeholder="Subject">
-                <textarea placeholder="Your Message"></textarea>
+            <form method="POST">
+                {% csrf_token %}
+                <input type="text" name="name" id="username" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="text" name="subject" placeholder="Subject">
+                <textarea name="message" placeholder="Your Message"></textarea>
 
-                <button type="submit">Send Message</button>
+                <button type="submit" name="submit" id="SubmitBtn">Send Message</button>
             </form>
         </div>
 
@@ -68,4 +69,16 @@
 </section>
 
 </body>
+{% include "userform/footer.html" %}
 </html>
+<script>
+document.getElementById("username").addEventListener("input", function() {
+    let value = this.value;
+
+    // Allow only letters, numbers, underscore
+    value = value.replace(/[^A-Za-z_]/g, '');
+
+    this.value = value;
+});
+
+</script>

@@ -7,6 +7,7 @@
     <title>Submit Complaint | Smart City</title>
     <link rel="stylesheet" href="{% static 'userform/complaint.css' %}">
 </head>
+{% include "userform/navbar.html" %}
 <body>
 
 <div class="form-container">
@@ -99,6 +100,7 @@
 </div>
 
 </body>
+{% include "userform/footer.html" %}
 <script>
 document.getElementById("phone").addEventListener("input", function(e) {
     // Remove non-numeric characters

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib import messages
-from .models import Complaint
+from .models import Complaint, Contact
 from .ml_model import predict
 import pandas as pd
 from django.core.paginator import Paginator
@@ -101,6 +101,15 @@ def about_us(request):
     return render(request, "userform/about_us.html")
 
 def contact(request):
+    if request.method == "POST":
+        contact = Contact(
+            name = request.POST.get("name"),
+            email = request.POST.get("email"),
+            subject = request.POST.get("subject"),
+            message = request.POST.get("message"),
+     )
+        contact.save()
+    
     return render(request, "userform/contact.html")
 
 # submit complaint

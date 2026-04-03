@@ -8,9 +8,10 @@
 body {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    width: 100%;
     /* Background Image */
     background: url("images/complaint_background.png") no-repeat center center;
     background-size: cover;

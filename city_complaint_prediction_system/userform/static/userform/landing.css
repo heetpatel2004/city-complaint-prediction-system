@@ -12,7 +12,7 @@ body {
 .popup {
     position: fixed;
     top: 20px;
-    right: 20px;
+    right: 50%;
     background: #4CAF50;
     color: white;
     padding: 15px 20px;

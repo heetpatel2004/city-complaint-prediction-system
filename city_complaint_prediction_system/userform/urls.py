@@ -13,6 +13,7 @@ urlpatterns = [
     path('track/', views.track_complaint, name='track_complaint'),
     path('logout/', views.user_logout, name='logout'),
     path('about/', views.about_us, name='about_us'),
+    # contact page
     path('contact/', views.contact, name='contact'),
     # admin section
     # path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
