@@ -12,7 +12,7 @@ class Complaint(models.Model):
         ('Garbage', 'Garbage'),
         ('Water Supply', 'Water Supply'),
         ('Road Damage', 'Road Damage'),
-        ('Street Lights', 'Street Lights'),
+        ('Street Light', 'Street Light'),
     ]
 
     name = models.CharField(max_length=100)
